@@ -1,0 +1,438 @@
+/* =========================================================
+   RESET
+   ========================================================= */
+
+   * {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    line-height: 1.6;
+
+    color: #17212b;
+    background-color: #f4f7f5;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+    padding: 50px 20px 35px;
+
+    background-color: #173b35;
+    color: #ffffff;
+}
+
+.header-content {
+    width: 100%;
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+
+    color: #8ed1b8;
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    letter-spacing: 0.15em;
+}
+
+h1 {
+    margin: 0 0 18px;
+
+    font-size: 2.5rem;
+    line-height: 1.1;
+}
+
+.intro {
+    margin: 0;
+
+    font-size: 1rem;
+    color: #dcebe5;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.container {
+    width: 100%;
+    padding: 30px 20px;
+}
+
+
+/* =========================================================
+   GALLERY
+   MOBILE
+   - 1 cột
+   - khoảng cách 10px giữa hàng/cột
+   ========================================================= */
+
+.gallery {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.card {
+    overflow: hidden;
+
+    background-color: #ffffff;
+
+    border: 2px solid #173b35;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+.card img {
+    display: block;
+
+    width: 100%;
+    height: 240px;
+
+    object-fit: cover;
+
+    border-radius: 0;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.card-content {
+    position: relative;
+
+    padding: 22px;
+}
+
+.number {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    color: #28795d;
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+}
+
+.card h2 {
+    margin: 0 0 10px;
+
+    color: #173b35;
+
+    font-size: 1.4rem;
+    line-height: 1.2;
+}
+
+.card p {
+    margin: 0;
+
+    color: #4a5753;
+
+    font-size: 0.98rem;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+    padding: 25px 20px;
+
+    text-align: center;
+
+    background-color: #173b35;
+    color: #dcebe5;
+}
+
+.site-footer p {
+    margin: 0;
+
+    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   TABLET
+   772px
+   ========================================================= */
+
+@media screen and (min-width: 772px) {
+
+    /*
+        Yêu cầu:
+        - Lưới 2 cột
+        - Ảnh có border-radius
+        - Phần tử cuối chiếm cả 2 cột
+    */
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card img {
+        border-radius: 50%;
+    }
+
+    /*
+        Con số cuối cùng chiếm cả hai cột
+    */
+
+    .card:last-child {
+        grid-column: 1 / -1;
+    }
+
+    /*
+        Card cuối khi trải rộng có thể bố trí
+        hình và nội dung cạnh nhau.
+    */
+
+    .card:last-child {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card:last-child img {
+        width: 100%;
+        height: 100%;
+
+        min-height: 280px;
+    }
+
+    .card:last-child .card-content {
+        display: flex;
+
+        flex-direction: column;
+        justify-content: center;
+    }
+
+}
+
+
+/* =========================================================
+   DESKTOP
+   992px
+   ========================================================= */
+
+@media screen and (min-width: 992px) {
+
+    /*
+        KHÔNG sử dụng max-width.
+        Nội dung sử dụng toàn bộ chiều rộng khả dụng.
+    */
+
+    .site-header {
+        padding: 70px 40px 50px;
+    }
+
+    .container {
+        padding: 40px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    /*
+        Yêu cầu:
+        Mỗi phần tử thứ 3 chiếm cả 2 cột.
+
+        :nth-child(3n)
+        sẽ chọn:
+        3, 6, 9, 12...
+    */
+
+    .card:nth-child(3n) {
+        grid-column: 1 / -1;
+    }
+
+
+    /*
+        Xóa border-radius khỏi tất cả hình
+    */
+
+    .card img {
+        border-radius: 0;
+    }
+
+
+    /*
+        Các card thông thường
+    */
+
+    .card:not(:nth-child(3n)) {
+        display: flex;
+
+        flex-direction: column;
+    }
+
+
+    /*
+        Các card thứ 3, 6, 9...
+        trải dài cả hai cột.
+    */
+
+    .card:nth-child(3n) {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card:nth-child(3n) img {
+        height: 100%;
+        min-height: 320px;
+    }
+
+    .card:nth-child(3n) .card-content {
+        display: flex;
+
+        flex-direction: column;
+        justify-content: center;
+
+        padding: 35px;
+    }
+
+
+    /*
+        Hiệu ứng hover nhẹ trên desktop
+    */
+
+    .card:hover {
+        transform: translateY(-6px);
+    }
+
+}
+
+
+/* =========================================================
+   DARK MODE
+   prefers-color-scheme: dark
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+
+    body {
+        background-color: #101716;
+
+        color: #f1f7f4;
+    }
+
+    .site-header {
+        background-color: #0a211d;
+
+        color: #ffffff;
+    }
+
+    .intro {
+        color: #c5d7d0;
+    }
+
+    .container {
+        background-color: #101716;
+    }
+
+    .card {
+        background-color: #1a2926;
+
+        border-color: #78b99f;
+
+        box-shadow:
+            0 5px 15px rgba(0, 0, 0, 0.35);
+    }
+
+    .card:hover {
+        box-shadow:
+            0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .number {
+        color: #8ed1b8;
+    }
+
+    .card h2 {
+        color: #e5f4ee;
+    }
+
+    .card p {
+        color: #c3d0cc;
+    }
+
+    .site-footer {
+        background-color: #0a211d;
+
+        color: #c5d7d0;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   prefers-reduced-motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+}
